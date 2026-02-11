@@ -470,15 +470,18 @@ def _pedir_cantidad() -> int:
 
 
 def main() -> None:
-    """ cantidad = _pedir_cantidad()
-    limit_records = cantidad if cantidad > 0 else 0
-    if limit_records > 0:
-        print(f"Exportando hasta {limit_records} registros a {CSV_PATH}")
-    run_obtener_registros(CSV_PATH, batch_size=BATCH_SIZE, limit_records=limit_records) """
-    nombre_agente = _pedir_nombre_agente()
+    # 1) Obtener registros desde HubSpot → CSV
     cantidad = _pedir_cantidad()
+    nombre_agente = _pedir_nombre_agente()
+
     if cantidad > 0:
-        print(f"Enviando hasta {cantidad} mensajes. Agente: {nombre_agente}")
+        print(f"Exportando hasta {cantidad} registros a {CSV_PATH}")
+    else:
+        print(f"Exportando registros a {CSV_PATH} (sin límite)")
+    run_obtener_registros(CSV_PATH, batch_size=BATCH_SIZE, limit_records=cantidad or None)
+
+    # 2) Envío de bienvenida (Aircall WhatsApp)
+    print(f"Enviando hasta {cantidad} mensajes. Agente: {nombre_agente}")
     run_envio_bienvenida(CSV_PATH, agent_name=nombre_agente, cantidad=cantidad)
 
 
