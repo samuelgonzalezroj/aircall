@@ -103,11 +103,10 @@ def build_graphql_body(offset: int = 0, count: int = 50, fields: List[str] = Non
                 "filters": [
                     {"operator": "NOT_IN", "property": "acquisition_channel", "values": ["LABORAI_WHATSAPP_2025"]},
                     {"operator": "NOT_HAS_PROPERTY", "property": "last_aircall_whatsapp_message_timestamp"},
-                    {"operator": "GT", "property": "createdate", "value": "2025-12-01", "dateTimeFormat": "DATE"},
-                    {"operator": "IN", "property": "hubspot_owner_id", "values": ["76484327"]},
+                    {"operator": "GT", "property": "createdate", "value": "2025-12-15", "dateTimeFormat": "DATE"},
+                    {"operator": "IN", "property": "hubspot_owner_id", "values": ["76484327", "78552814"]},
                     {"operator": "IN", "property": "hs_lead_status", "values": ["IN_PROGRESS_LABORAI"]},
-                    {"operator": "IN", "property": "query_type", "values": ["reclama"]},
-                    {"operator": "IN", "property": "lifecyclestage", "values": ["customer", "lead"]},
+                    {"operator": "IN", "property": "lifecyclestage", "values": ["lead"]},
                     {"operator": "EQ", "property": "aeat_reference", "value": "ERROR"},
                 ]
             }],
